@@ -1,0 +1,71 @@
+[
+  {
+    "id": "E1",
+    "round": 1,
+    "title": "Total expenses by category",
+    "function": "category_totals(expenses)",
+    "dependencies": []
+  },
+  {
+    "id": "E2",
+    "round": 1,
+    "title": "List the people who paid",
+    "function": "people(expenses)",
+    "dependencies": []
+  },
+  {
+    "id": "E3",
+    "round": 1,
+    "title": "Find the largest expense",
+    "function": "largest_expense(expenses)",
+    "dependencies": []
+  },
+  {
+    "id": "E4",
+    "round": 2,
+    "title": "Fix fair bill splitting",
+    "function": "split_bill(cents, participants)",
+    "dependencies": []
+  },
+  {
+    "id": "E5",
+    "round": 2,
+    "title": "Fix category normalization",
+    "function": "normalize_category(label)",
+    "dependencies": []
+  },
+  {
+    "id": "E6",
+    "round": 2,
+    "title": "Fix inclusive amount filtering",
+    "function": "filter_expenses(expenses, minimum, maximum)",
+    "dependencies": []
+  },
+  {
+    "id": "E7",
+    "round": 3,
+    "title": "Calculate settlement balances",
+    "function": "balances(expenses, participants)",
+    "dependencies": [
+      "E4"
+    ]
+  },
+  {
+    "id": "E8",
+    "round": 3,
+    "title": "Build the expense summary",
+    "function": "summary(expenses)",
+    "dependencies": [
+      "E1",
+      "E2",
+      "E3"
+    ]
+  },
+  {
+    "id": "E9",
+    "round": 3,
+    "title": "Export expenses to CSV",
+    "function": "to_csv(expenses)",
+    "dependencies": []
+  }
+]
