@@ -1,6 +1,6 @@
 """Expense Tracker: a small standard-library-only teaching project."""
-import csv
-import io
+import csv  # noqa: F401 -- available for the round-three CSV task
+import io  # noqa: F401 -- available for the round-three CSV task
 import json
 
 
@@ -20,18 +20,36 @@ def people(expenses):
 
 
 def largest_expense(expenses):
-    """E3: Find the largest expense. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement E3: Find the largest expense")
+    return max(expenses, key=lambda expense: expense["cents"], default=None)
 
 
 def split_bill(cents, participants):
     """E4: Fix fair bill splitting. See TASKS.md for the complete contract."""
-    return {person: cents // len(participants) for person in participants}
+    if cents < 0:
+        raise ValueError("cents cannot be negative")
+
+    if not participants:
+        raise ValueError("participants cannot be empty")
+
+    if len(participants) != len(set(participants)):
+        raise ValueError("duplicate participant labels")
+
+    participants = sorted(participants)
+
+    base_share, remainder = divmod(cents, len(participants))
+
+    return {
+        person: base_share + (1 if i < remainder else 0)
+        for i, person in enumerate(participants)
+    }
 
 
 def normalize_category(label):
     """E5: Fix category normalization. See TASKS.md for the complete contract."""
-    return label.lower()
+    result = label.strip().casefold()
+    if not result:
+        raise ValueError("category label is empty after normalization")
+    return result
 
 
 def filter_expenses(expenses, minimum, maximum):
