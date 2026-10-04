@@ -45,8 +45,13 @@ def balances(expenses, participants):
 
 
 def summary(expenses):
-    """E8: Build the expense summary. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement E8: Build the expense summary")
+    """E8: Build the expense summary using earlier functions."""
+    return {
+        "total_cents": total_cents(expenses),
+        "categories": category_totals(expenses),
+        "people": people(expenses),
+        "largest": largest_expense(expenses),
+    }
 
 
 def to_csv(expenses):
