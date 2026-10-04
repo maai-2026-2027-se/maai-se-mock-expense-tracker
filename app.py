@@ -69,7 +69,12 @@ def summary(expenses):
 
 def to_csv(expenses):
     """E9: Export expenses to CSV. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement E9: Export expenses to CSV")
+    output = io.StringIO(newline="")
+    writer = csv.writer(output, lineterminator="\n")
+    writer.writerow(["person", "category", "cents"])
+    for expense in expenses:
+        writer.writerow([expense["person"], expense["category"], expense["cents"]])
+    return output.getvalue()
 
 
 if __name__ == "__main__":
