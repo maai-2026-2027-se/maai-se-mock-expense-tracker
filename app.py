@@ -20,8 +20,7 @@ def people(expenses):
 
 
 def largest_expense(expenses):
-    """E3: Find the largest expense. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement E3: Find the largest expense")
+    return max(expenses, key=lambda expense: expense["cents"], default=None)
 
 
 def split_bill(cents, participants):
