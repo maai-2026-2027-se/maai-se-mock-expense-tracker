@@ -16,7 +16,8 @@ def category_totals(expenses):
 
 def people(expenses):
     """E2: List the people who paid. See TASKS.md for the complete contract."""
-    raise NotImplementedError("Implement E2: List the people who paid")
+    return sorted({expense["person"] for expense in expenses})
+   
 
 
 def largest_expense(expenses):
