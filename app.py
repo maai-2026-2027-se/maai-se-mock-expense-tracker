@@ -30,8 +30,10 @@ def split_bill(cents, participants):
 
 
 def normalize_category(label):
-    """E5: Fix category normalization. See TASKS.md for the complete contract."""
-    return label.lower()
+    normalized = label.strip().casefold()
+    if not normalized:
+        raise ValueError("Category must not be empty")
+    return normalized
 
 
 def filter_expenses(expenses, minimum, maximum):
