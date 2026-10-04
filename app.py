@@ -26,7 +26,23 @@ def largest_expense(expenses):
 
 def split_bill(cents, participants):
     """E4: Fix fair bill splitting. See TASKS.md for the complete contract."""
-    return {person: cents // len(participants) for person in participants}
+    if cents < 0:
+        raise ValueError("cents cannot be negative")
+
+    if not participants:
+        raise ValueError("participants cannot be empty")
+
+    if len(participants) != len(set(participants)):
+        raise ValueError("duplicate participant labels")
+
+    participants = sorted(participants)
+
+    base_share, remainder = divmod(cents, len(participants))
+
+    return {
+        person: base_share + (1 if i < remainder else 0)
+        for i, person in enumerate(participants)
+    }
 
 
 def normalize_category(label):
