@@ -36,7 +36,13 @@ def normalize_category(label):
 
 def filter_expenses(expenses, minimum, maximum):
     """E6: Fix inclusive amount filtering. See TASKS.md for the complete contract."""
-    return [expense for expense in expenses if minimum < expense['cents'] < maximum]
+    if minimum < 0 or maximum < minimum:
+        raise ValueError("invalid filter bounds")
+    return [
+        expense
+        for expense in expenses
+        if minimum <= expense["cents"] <= maximum
+    ]
 
 
 def balances(expenses, participants):
